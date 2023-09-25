@@ -1,19 +1,30 @@
-# ConfigFanshawe
- Repo containing the code for Configuraton and Deployment taught in Fanshawe GDP-1
+# ConfigFanshawe<br>
+ Repo containing the code for Configuraton and Deployment taught in Fanshawe GDP-1<br>
+<br>
+
+Installion notes:<br>
+<br>
+> Step 1: Pull the Repository<br>
+>
+> Step 2: Open the ConfigFanshwe.sln and compile the entire solution<br>
+<br>
 
 
-Installion notes:
 
-Step 1: Pull the Repository
-Step 2: Open the ConfigFanshwe.sln and compile the entire solution
+Usage:<br>
+<br> 
+>1: Set [TestSuiteOne_StaticLib](https://github.com/RedBellPepperoni/ConfigFanshawe/blob/main/TestSuiteOne_StaticLib/TestSuiteOne_StaticLib.vcxproj "TestSuiteOne") as the startup project and build+run to run testnng on the Player Static Lib<br>
+>
+>2: Set [TestSuiteTwo_DynamicLib](https://github.com/RedBellPepperoni/ConfigFanshawe/blob/main/TestSuiteTwo_DynamicLib/TestSuiteTwo_DynamicLib.vcxproj "TestSuiteTwo") as the startup project and build+run to run tests on the Dungeon DLL<br>
+>
+>3: Set [TestSuiteThree_Integration](https://github.com/RedBellPepperoni/ConfigFanshawe/blob/main/TestSuiteThree_Integration/TestSuiteThree_Integration.vcxproj "TestSuiteThree") as the startup project and build+run to test integration of noth the static and dynamic library classes<br>
+>
+<br>
 
-Usage:
 
-1: Set TestSuiteOne_StaticLib as the startup project and build+run to run testnng on the Player Static Lib
-2: Set TestSuiteTwo_DynamicLib as the startup project and build+run to run tests on the Dungeon DLL 
-3: Set TestSuiteThree_Integration as the startup project and build+run to test integration of noth the static and dynamic library classes
 
-Debugging:
-
-If the building/running of any of the classes fail its probably because either/both of ConfigStaticLib and ConfigDynamicLib projects haven't been built
-Just build those 2 projects and the tryagain
+Debugging:<br>
+<br>
+>If the building/running of any of the classes fail its probably because either/both of [ConfigStaticLib](https://github.com/RedBellPepperoni/ConfigFanshawe/blob/main/ConfigStaticLib/ConfigStaticLib.vcxproj "ConfigStaticLib") and [ConfigDynamicLib](https://github.com/RedBellPepperoni/ConfigFanshawe/blob/main/ConfigDynamicLib/ConfigDynamicLib.vcxproj "ConfigDynamicLib") projects haven't been built<br>
+>
+>Just build those 2 projects and the try again<br>
