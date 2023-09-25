@@ -291,4 +291,8 @@ int main(int argc, char* argv)
 
 	RUN_ALL_TESTS();
 
+	std::cout << "Press any key to exit" << std::endl;
+
+	std::cin.get();
+
 }
