@@ -6,18 +6,18 @@ Installion notes:<br>
 <br>
 > Step 1: Pull the Repository<br>
 >
-> Step 2: Open the ConfigFanshwe.sln and compile the entire solution<br>
+> Step 2: Open the ConfigFanshawe.sln and compile the entire solution<br>
 <br>
 
 
 
 Usage:<br>
 <br> 
->1: Set [TestSuiteOne_StaticLib](https://github.com/RedBellPepperoni/ConfigFanshawe/blob/main/TestSuiteOne_StaticLib/TestSuiteOne_StaticLib.vcxproj "TestSuiteOne") as the startup project and build+run to run testnng on the Player Static Lib<br>
+>1: Set [TestSuiteOne_StaticLib](https://github.com/RedBellPepperoni/ConfigFanshawe/blob/main/TestSuiteOne_StaticLib/TestSuiteOne_StaticLib.vcxproj "TestSuiteOne") as the startup project and build+run to run testing on the Player Static Lib<br>
 >
 >2: Set [TestSuiteTwo_DynamicLib](https://github.com/RedBellPepperoni/ConfigFanshawe/blob/main/TestSuiteTwo_DynamicLib/TestSuiteTwo_DynamicLib.vcxproj "TestSuiteTwo") as the startup project and build+run to run tests on the Dungeon DLL<br>
 >
->3: Set [TestSuiteThree_Integration](https://github.com/RedBellPepperoni/ConfigFanshawe/blob/main/TestSuiteThree_Integration/TestSuiteThree_Integration.vcxproj "TestSuiteThree") as the startup project and build+run to test integration of noth the static and dynamic library classes<br>
+>3: Set [TestSuiteThree_Integration](https://github.com/RedBellPepperoni/ConfigFanshawe/blob/main/TestSuiteThree_Integration/TestSuiteThree_Integration.vcxproj "TestSuiteThree") as the startup project and build+run to test integration of both the static and dynamic library classes<br>
 >
 <br>
 
