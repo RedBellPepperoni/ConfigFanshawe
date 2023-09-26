@@ -1,14 +1,27 @@
 #include <iostream>
 #include "gtest/gtest.h"
 #include "ConfigDynamicLib/Dungeon.h"
+#include <windows.h>
 
-namespace TestSuiteOne
+
+
+namespace TestSuiteTwo
 {
 	// =================== TEST FIXTURES =========================
+
+	// Global variable for now
+	HMODULE hDll;
+	typedef DynamicLib::Dungeon* (*CreateDungeonDefault)();
+	typedef DynamicLib::Dungeon* (*CreateDungeonCustom)(const std::string dungeonName, const int enemiesToSpawn, const int enemyHealth, const int enemyAttack);
+
+
+	//std::string dllPath = "x64/Realse/ConfigDynamicLib.dll";
 
 	// Test Fixture to test dungeon Data from the linked static library
 	struct DungeonFixtureDynamic : testing::Test
 	{
+
+
 		// initializing an empty dungeon pointer
 		DynamicLib::Dungeon* dungeonHandle = nullptr;
 
@@ -27,16 +40,23 @@ namespace TestSuiteOne
 		//  Dungeon Setup with Default values
 		void SetUp()
 		{
+			CreateDungeonDefault dllDefaultDungeon = (CreateDungeonDefault)GetProcAddress(hDll, "CreateDungeonDefault");
+
 			// Setting up a new dungeon with default data
-			dungeonHandle = new DynamicLib::Dungeon();
+			dungeonHandle = (dllDefaultDungeon)();
+
+			
+			//dungeonHandle = new DynamicLib::Dungeon();
 
 		}
 
 		// Dungeon Setup with custom parameters
 		void SetUp(const std::string dungeonName, const int enemiesToSpawn, const int enemyHealth, const int enemyAttack)
 		{
+			CreateDungeonCustom dllCustomDungeon = (CreateDungeonCustom)GetProcAddress(hDll, "CreateDungeonCuston");
+
 			// Custom data
-			dungeonHandle = new DynamicLib::Dungeon(dungeonName, enemiesToSpawn, enemyHealth, enemyAttack);
+			dungeonHandle =  dllCustomDungeon(dungeonName, enemiesToSpawn, enemyHealth, enemyAttack);
 		}
 
 
@@ -44,6 +64,8 @@ namespace TestSuiteOne
 		virtual void TearDown()
 		{
 			delete dungeonHandle;
+
+			
 		}
 
 
@@ -206,13 +228,33 @@ namespace TestSuiteOne
 }
 
 
-
+using namespace TestSuiteTwo;
 
 int main(int argc, char* argv)
 {
+
+    hDll = LoadLibrary(L"ConfigDynamicLib.dll");
+
+	if (hDll == NULL)
+	{
+		std::cout << "Failed to Load the dll. GetLastError returns: 0x" << GetLastError() << std::endl;
+	}
+
+	/* Virtual Function table method */
+	std::cout << "Importing by Virtual Function Table:" << std::endl;
+
+
+
+
+
 	::testing::InitGoogleTest();
 
 	RUN_ALL_TESTS();
+
+	if (hDll != NULL)
+	{
+		FreeLibrary(hDll);
+	}
 
 	std::cout << "Press any key to exit" << std::endl;
 

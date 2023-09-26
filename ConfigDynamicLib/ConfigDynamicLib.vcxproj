@@ -22,6 +22,7 @@
     <ClInclude Include="Dungeon.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DungeonDllImp.cpp" />
     <ClCompile Include="Dungeon.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

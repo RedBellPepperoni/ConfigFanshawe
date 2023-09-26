@@ -5,10 +5,11 @@
 namespace DynamicLib
 {
 
-#define DLLEXPORT __declspec ( dllexport )
+
+
 
 	// A simple Turnbased Dungeon sim
-	class DLLEXPORT Dungeon
+	class Dungeon
 	{
 		
 
@@ -20,32 +21,32 @@ namespace DynamicLib
 		Dungeon(const std::string dungeonName,const int enemiesToSpawn,const int enemyHealth,const int enemyDamage);
 
 		// Destructor
-		~Dungeon();
+		virtual ~Dungeon();
 
 
 		// =================== FUNCTIONAL STUFF ==================
 
 		// Process all the happening during one turn : one turn at a time 
 		// process all the turn either till player dies or player completes the dungeon
-		void ProcessTurn(const int& damagefromPlayer);
+		virtual void ProcessTurn(const int& damagefromPlayer);
 
 		
 
 		// Getter to check if the dungeon is complete
-		const bool AllEnemiesKilled() const;
-		const int GetRemainingEnemies() const;
-		const int GetEnemyMaxHealth() const;
-		const int GetEnemyCurrentHealth() const;
-		const int GetEnemyAttack() const;
-		const std::string GetName() const;
+		virtual const bool AllEnemiesKilled() const;
+		virtual const int GetRemainingEnemies() const;
+		virtual const int GetEnemyMaxHealth() const;
+		virtual const int GetEnemyCurrentHealth() const;
+		virtual const int GetEnemyAttack() const;
+		virtual const std::string GetName() const;
 		
 		
 
-	private:
+	protected:
 		void TakeDamage(const int incomingDamage);
 
 
-	private:
+	protected:
 
 		// Name of the Dungeon
 		std::string m_name;
@@ -64,9 +65,6 @@ namespace DynamicLib
 
 		// The health of each enemy
 		int m_enemyMaxHealth;
-
-		
-
 
 
 
