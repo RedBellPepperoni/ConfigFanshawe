@@ -101,8 +101,8 @@ namespace TestSuiteTwo
 		// The health should never be above 100 for the default dungeon
 		EXPECT_FALSE(dungeonHandle->GetRemainingEnemies() == 5);
 
-		// Checking if the Name of the dungeon is differnt from default
-		EXPECT_FALSE(dungeonHandle->GetName() == "SomeOtherName");
+		// Checking if the Name of the dungeon is not empty
+		EXPECT_FALSE(dungeonHandle->GetName() == "");
 
 		// Seeing if all the enemies are already killed when the dungeon spawns, this shouldn't be possible
 		EXPECT_FALSE(dungeonHandle->AllEnemiesKilled());
@@ -237,13 +237,23 @@ int main(int argc, char* argv)
 
 	if (hDll == NULL)
 	{
-		std::cout << "Failed to Load the dll. GetLastError returns: 0x" << GetLastError() << std::endl;
+		std::cout << "Failed to Load the dll  : GetLastError returns: 0x" << GetLastError() << std::endl;
+
+
+		// Cleaning up just in case theres some stuff still loaded
+		FreeLibrary(hDll);
+
+		// Blocking call to so that the console doesnt auto close
+		std::cout << "Press any key to exit" << std::endl;
+		std::cin.get();
+
+		return 1;
 	}
+
+
 
 	/* Virtual Function table method */
 	std::cout << "Importing by Virtual Function Table:" << std::endl;
-
-
 
 
 
@@ -252,12 +262,15 @@ int main(int argc, char* argv)
 	RUN_ALL_TESTS();
 
 	if (hDll != NULL)
-	{
+	{	
+
 		FreeLibrary(hDll);
 	}
 
+	// Blocking call to so that the console doesnt auto close
 	std::cout << "Press any key to exit" << std::endl;
-
 	std::cin.get();
+
+	return 0;
 
 }

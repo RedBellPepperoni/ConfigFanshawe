@@ -9,6 +9,7 @@
 
 namespace DynamicLib
 {
+	// Extern Calls
 	extern "C" DLLEXPORT Dungeon* CreateDungeonDefault()
 	{
 		return new Dungeon();

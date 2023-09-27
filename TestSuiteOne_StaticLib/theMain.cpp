@@ -82,8 +82,8 @@ namespace TestSuiteOne
 		// The health should never be above 100 for the default player
 		EXPECT_FALSE(playerHandle->GetHealth() > 100);
 
-		// Checking if the Name of the player is differnt from default
-		EXPECT_FALSE(playerHandle->GetName() == "SomeOtherName");
+		// Checking if the Name of the player is not empty
+		EXPECT_FALSE(playerHandle->GetName() == "");
 
 		// Seeing if the player is Dead from the get do, this shouldn't be possible
 		EXPECT_FALSE(playerHandle->IsDead() == true);

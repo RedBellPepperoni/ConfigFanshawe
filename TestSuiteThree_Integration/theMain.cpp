@@ -116,8 +116,8 @@ namespace TestSuiteThree
 		// The health should never be above 100 for the default player
 		EXPECT_FALSE(playerHandle->GetHealth() > 100);
 
-		// Checking if the Name of the player is differnt from default
-		EXPECT_FALSE(playerHandle->GetName() == "SomeOtherName");
+		// Checking if the Name of the player is not empty
+		EXPECT_FALSE(playerHandle->GetName() == "");
 
 		// Seeing if the player is Dead from the get do, this shouldn't be possible
 		EXPECT_FALSE(playerHandle->IsDead() == true);
@@ -298,16 +298,24 @@ namespace TestSuiteThree
 }
 
 
+
 using namespace TestSuiteThree;
 
 int main(int argc, char* argv)
 {
-
+	
 	hDll = LoadLibrary(L"ConfigDynamicLib.dll");
 
 	if (hDll == NULL)
 	{
 		std::cout << "Failed to Load the dll. GetLastError returns: 0x" << GetLastError() << std::endl;
+
+		// Cleaning up just in case theres some stuff still loaded
+		FreeLibrary(hDll);
+
+		//Blocking Call
+		std::cout << "Press any key to exit" << std::endl;
+		std::cin.get();
 	}
 
 	/* Virtual Function table method */
@@ -323,8 +331,9 @@ int main(int argc, char* argv)
 		FreeLibrary(hDll);
 	}
 
-	std::cout << "Press any key to exit" << std::endl;
 
+	// Blocking call to so that the console doesnt auto close
+	std::cout << "Press any key to exit" << std::endl;
 	std::cin.get();
 
 }
